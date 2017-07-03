@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<table>
+  <base>CRM/Membershipperiod</base>
+  <class>MembershipPeriod</class>
+  <name>civicrm_membership_period</name>
+  <comment>This entity will store membership periods of all memberships.</comment>
+  <add>4.4</add>
+  <log>true</log>
+
+  <field>
+    <name>id</name>
+    <type>int unsigned</type>
+    <required>true</required>
+    <comment>Unique MembershipPeriod ID</comment>
+    <add>4.4</add>
+  </field>
+  <primaryKey>
+    <name>id</name>
+    <autoincrement>true</autoincrement>
+  </primaryKey>
+  <field>
+	<name>start_date</name>
+	<uniqueName>membership_start_date</uniqueName>
+	<title>Membership Start Date</title>
+	<type>date</type>
+	<import>true</import>
+	<comment>Beginning of membership period.</comment>
+	<add>4.4</add>
+</field>
+<field>
+	<name>end_date</name>
+	<uniqueName>membership_end_date</uniqueName>
+	<title>Membership End Date</title>
+	<type>date</type>
+	<import>true</import>
+	<comment>Membership period expire date.</comment>
+	<add>4.4</add>
+</field>
+  <field>
+    <name>membership_id</name>
+    <type>int unsigned</type>
+    <comment>FK to Membership</comment>
+    <add>4.4</add>
+  </field>
+  <foreignKey>
+    <name>membership_id</name>
+    <table>civicrm_membership</table>
+    <key>id</key>
+    <add>4.4</add>
+    <onDelete>CASCADE</onDelete>
+  </foreignKey>
+</table>

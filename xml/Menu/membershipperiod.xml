@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/contact/view/membership/periods</path>
+    <page_callback>CRM_Membershipperiod_Page_MembershipPeriod</page_callback>
+    <title>MembershipPeriod</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
