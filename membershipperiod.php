@@ -170,3 +170,16 @@ function membershipperiod_civicrm_links($op, $objectName, $objectId, &$links, &$
          );
     }
 }
+
+/**
+ * Implementation of hook_civicrm_entityTypes
+ */
+function membershipperiod_civicrm_entityTypes(&$entityTypes) {
+    if(!isset($entityTypes["CRM_Membershipperiod_DAO_MembershipPeriod"])) {
+        $entityTypes[] = array(
+            'name'  => 'MembershipPeriod',
+            'class' => 'CRM_Membershipperiod_DAO_MembershipPeriod',
+            'table' => 'civicrm_membership_period',
+        );
+    }
+}

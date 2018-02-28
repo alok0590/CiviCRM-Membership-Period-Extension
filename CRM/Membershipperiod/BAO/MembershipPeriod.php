@@ -111,6 +111,7 @@ class CRM_Membershipperiod_BAO_MembershipPeriod extends CRM_Membershipperiod_DAO
           // If membership is of lifetime, No need to record membership period.
           return;
       }
+
       $membership = civicrm_api3("MembershipPeriod",'get',array(
           "membership_id"=>$membership_id,
           "sequential" => 1,
@@ -178,7 +179,19 @@ class CRM_Membershipperiod_BAO_MembershipPeriod extends CRM_Membershipperiod_DAO
             $updateenddate = true;
             if($membership_end_date<$params_end_date) {
                 $datediff=$params_end_date->diff($membership_end_date);
-                if($datediff->y!=0 && $datediff->m ==0 && $datediff->d == 0) {
+
+                $duration_unit = $membership_duration_term["membership_type_id.duration_unit"];
+                $duration_interval = $membership_duration_term["membership_type_id.duration_interval"];
+
+                if($duration_unit=="year" && $datediff->y == $duration_interval && $datediff->m ==0 && $datediff->d == 0) {
+                    $updateenddate = false;
+                }
+
+                else if($duration_unit=="month" && $datediff->m ==$duration_interval && $datediff->d == 0) {
+                    $updateenddate = false;
+                }
+
+                else  if($duration_unit=="day" && $datediff->d == $duration_interval) {
                     $updateenddate = false;
                 }
             }

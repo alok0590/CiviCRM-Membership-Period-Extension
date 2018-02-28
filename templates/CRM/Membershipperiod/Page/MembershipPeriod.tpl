@@ -16,10 +16,14 @@
           <td>{$membershipperiod.end_date|crmDate}</td>
           <td>{$membershipperiod.renew_timestamp|crmDate}</td>
           <td>
-            <center>
-              {$membershipperiod.total_contribution_amount|crmMoney:$membershipperiod.contribution_currency}<br>
-              <a href="{$membershipperiod.contribution_url}" class="action-item crm-hover-button">View Details</a>
-            </center>
+              {if $membershipperiod.total_contribution_amount}
+                <center>
+                  {$membershipperiod.total_contribution_amount|crmMoney:$membershipperiod.contribution_currency}<br>
+                  <a href="{$membershipperiod.contribution_url}" class="action-item crm-hover-button">View Details</a>
+                </center>
+              {else}
+                  <center>No Contribution</center>
+              {/if}
           </td>
       </tr>
     {/foreach}
